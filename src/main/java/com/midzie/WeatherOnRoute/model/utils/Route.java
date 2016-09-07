@@ -41,6 +41,15 @@ public class Route {
 	public void setTo(String to) {
 		this.to = to;
 	}
+
+	public Date getTravelTime() {
+		return travelTime;
+	}
+
+	public void setTravelTime(Date travelTime) {
+		this.travelTime = travelTime;
+	}
+	
 	
 	
 	

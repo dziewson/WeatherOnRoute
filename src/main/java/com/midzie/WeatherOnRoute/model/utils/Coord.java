@@ -4,7 +4,8 @@ public class Coord {
 	private String latitude;
 	private String longtitude;
 	private double minutes;
-
+	private Weather weather;
+	
 	public String getLatitude() {
 		return latitude;
 	}
@@ -27,6 +28,14 @@ public class Coord {
 
 	public void setMinutes(double minutes) {
 		this.minutes = minutes;
+	}	
+
+	public Weather getWeather() {
+		return weather;
+	}
+
+	public void setWeather(Weather weather) {
+		this.weather = weather;
 	}
 
 	@Override
