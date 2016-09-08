@@ -35,7 +35,7 @@ public class Parser {
 		return route;
 	}
 
-	private void getWeatherForCords(Coord coord) {
+	private int getWeatherForCords(Coord coord) {		
 		JSONObject weatherObj = netManager.getJSONFromURL(ModelStaticValues.YAHOO_WEATHER_URL + coord.getLatitude() + ModelStaticValues.COMMA + coord.getLongtitude() + ModelStaticValues.END_OF_YAHOO_WEATHER_URL);		
 		Weather weather = new Weather();
 		JSONObject query = weatherObj.getJSONObject("query");		
@@ -48,6 +48,11 @@ public class Parser {
 		JSONObject location = channel.getJSONObject("location");		
 		setWeather(weather, atmosphere, wind, condition, location);	
 		System.out.println(weather);
+		int x = 0;
+		for(int index = 0 ; index < 1000000 ; index++) {
+			x++;
+		}
+		return x;
 	}
 
 	private void setWeather(Weather weather, JSONObject atmosphere, JSONObject wind, JSONObject condition,

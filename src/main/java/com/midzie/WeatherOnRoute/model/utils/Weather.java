@@ -28,13 +28,15 @@ public class Weather {
 	public void setWindSpeed(String windSpeed) {
 		Double speed = Double.parseDouble(windSpeed);
 		speed *= 1.61;		
-		this.windSpeed = speed.toString()+" km/h";
+		this.windSpeed = speed+" km/h";
 	}
 	public String getWindDirection() {
 		return windDirection;
 	}
 	public void setWindDirection(String windDirection) {
-		this.windDirection = windDirection;
+		double direction = Double.parseDouble(windDirection);
+	
+		this.windDirection = convertDegreeToCardinalDirection(direction);
 	}
 	public String getHumidity() {
 		return humidity;
@@ -71,6 +73,35 @@ public class Weather {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	private String convertDegreeToCardinalDirection(double direction) {
+		if( (direction >= 348.75 && direction <= 360) || (direction >= 0 && direction <= 11.25)) {
+			return "N";
+		}
+		if(direction > 11.25 && direction <= 56.25) {
+			return "NE";
+		}
+		if(direction > 56.25 && direction <= 101.25) {
+			return "E";
+		}
+		if(direction > 101.25 && direction <= 146.25) {
+			return "SE";
+		}
+		if(direction > 146.25 && direction <= 191.25 ) {
+			return "S";
+		}
+		if(direction > 191.25 && direction <= 236.25) {
+			return "SW";
+		}
+		if(direction > 236.25 && direction <= 281.25) {
+			return "W";
+		}
+		if(direction > 281.25 && direction < 348.75) {
+			return "NW";
+		}
+		return "Brak danych o kierunku wiatru";
+	}
+
+	
 	@Override
 	public String toString() {
 		return "Weather [city=" + city + ", country=" + country + ", windSpeed=" + windSpeed + ", windDirection="
