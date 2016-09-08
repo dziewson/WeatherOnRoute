@@ -9,6 +9,7 @@ import com.midzie.WeatherOnRoute.model.manager.NetManager;
 import com.midzie.WeatherOnRoute.model.utils.Coord;
 import com.midzie.WeatherOnRoute.model.utils.ModelStaticValues;
 import com.midzie.WeatherOnRoute.model.utils.Route;
+import com.midzie.WeatherOnRoute.model.utils.Weather;
 
 public class Parser {
 	NetManager netManager = new NetManager();
@@ -35,12 +36,31 @@ public class Parser {
 	}
 
 	private void getWeatherForCords(Coord coord) {
-		JSONObject weatherObj = netManager.getJSONFromURL(ModelStaticValues.YAHOO_WEATHER_URL + coord.getLatitude() + ModelStaticValues.COMMA + coord.getLongtitude() + ModelStaticValues.END_OF_YAHOO_WEATHER_URL);
-		int i = 0 ;
-		while(i < 100000000) {
-			i++;
-		}		
-		System.out.println(weatherObj);
+		JSONObject weatherObj = netManager.getJSONFromURL(ModelStaticValues.YAHOO_WEATHER_URL + coord.getLatitude() + ModelStaticValues.COMMA + coord.getLongtitude() + ModelStaticValues.END_OF_YAHOO_WEATHER_URL);		
+		Weather weather = new Weather();
+		JSONObject query = weatherObj.getJSONObject("query");		
+		JSONObject results = query.getJSONObject("results");
+		JSONObject channel = results.getJSONObject("channel");
+		JSONObject atmosphere = channel.getJSONObject("atmosphere");
+		JSONObject wind = channel.getJSONObject("wind");
+		JSONObject item = channel.getJSONObject("item");
+		JSONObject condition = item.getJSONObject("condition");
+		JSONObject location = channel.getJSONObject("location");		
+		setWeather(weather, atmosphere, wind, condition, location);	
+		System.out.println(weather);
+	}
+
+	private void setWeather(Weather weather, JSONObject atmosphere, JSONObject wind, JSONObject condition,
+			JSONObject location) {
+		weather.setHumidity(atmosphere.getString("humidity"));
+		weather.setPressure(atmosphere.getString("pressure"));
+		weather.setVisibility(atmosphere.getString("visibility"));		
+		weather.setWindDirection(wind.getString("direction"));
+		weather.setWindSpeed(wind.getString("speed"));
+		weather.setTemperature(condition.getString("temp"));
+		weather.setDescription(condition.getString("text"));	
+		weather.setCity(location.getString("city"));
+		weather.setCountry(location.getString("country"));
 	}
 
 	private double setRoutCordsAndMinutes(Route route, double dist, double min, JSONObject location,

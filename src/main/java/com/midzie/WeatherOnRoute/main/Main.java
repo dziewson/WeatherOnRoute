@@ -2,7 +2,6 @@ package com.midzie.WeatherOnRoute.main;
 
 import java.util.Date;
 
-import com.midzie.WeatherOnRoute.model.manager.NetManager;
 import com.midzie.WeatherOnRoute.model.parser.Parser;
 
 public class Main {
