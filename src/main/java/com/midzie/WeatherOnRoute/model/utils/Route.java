@@ -9,10 +9,13 @@ public class Route {
 	private String from;
 	private String to;
 	private Date travelTime;
-	public Route() {		
+	private Weather weatherOnStart;
+	private Weather weatherOnEnd;
+
+	public Route() {
 	}
-	
-	public Route(List<Coord> coords, String from, String to) {	
+
+	public Route(List<Coord> coords, String from, String to) {
 		this.coords = coords;
 		this.from = from;
 		this.to = to;
@@ -49,8 +52,28 @@ public class Route {
 	public void setTravelTime(Date travelTime) {
 		this.travelTime = travelTime;
 	}
-	
-	
-	
+
+	public Weather getWeatherOnStart() {
+		return weatherOnStart;
+	}
+
+	public void setWeatherOnStart(Weather weatherOnStart) {
+		this.weatherOnStart = weatherOnStart;
+	}
+
+	public Weather getWeatherOnEnd() {
+		return weatherOnEnd;
+	}
+
+	public void setWeatherOnEnd(Weather weatherOnEnd) {
+		this.weatherOnEnd = weatherOnEnd;
+	}
+
+	@Override
+	public String toString() {
+		return "Route [ from=" + from + ", to=" + to +", weatherOnStart=" + weatherOnStart + ", weatherOnEnd=" + weatherOnEnd + "]"+ " coords =" + coords ;
+	}
+
+
 	
 }

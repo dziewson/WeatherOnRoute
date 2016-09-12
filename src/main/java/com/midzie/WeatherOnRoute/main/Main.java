@@ -7,14 +7,13 @@ import com.midzie.WeatherOnRoute.model.parser.Parser;
 public class Main {
 
 	public static void main(String[] args) {
-	
-		String from = "Łódź";
-		String to = "Biłgoraj";
-		Parser parser = new Parser();		
+
+		String from = "Lodz";
+		String to = "Sulejow";
+		Parser parser = new Parser();
 		Date date = new Date();		
-		System.out.println(date);
 		parser.getRoute(from, to, date);
-		
+
 	}
 
 }

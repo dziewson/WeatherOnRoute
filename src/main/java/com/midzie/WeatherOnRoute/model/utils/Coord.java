@@ -40,8 +40,10 @@ public class Coord {
 
 	@Override
 	public String toString() {
-		return "Coord [latitude=" + latitude + ", longtitude=" + longtitude + ", minutes=" + minutes + "]";
+		return "Coord [latitude=" + latitude + ", longtitude=" + longtitude + ", minutes=" + minutes + ", weather="
+				+ weather + "]";
 	}
+
 
 	
 }
